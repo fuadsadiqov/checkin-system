@@ -23,6 +23,7 @@
 
 /* SEARCH */
 .search-box {
+  padding-top: 1rem;
   width: 100%;
 }
 
@@ -31,12 +32,6 @@ table {
   width: 100%;
 }
 
-/* Table Wrapper for MOBILE SCROLL */
-mat-card table {
-  display: block;               /* 🔥 mobil scroll üçün */
-  overflow-x: auto;             /* 🔥 horizontal scroll */
-  white-space: nowrap;          /* 🔥 table column-lar sıxılıb əyrilmir */
-}
 
 /* CELLS */
 td,
@@ -108,12 +103,6 @@ th {
     font-size: 14px;          /* mobil üçün kiçik font */
   }
 
-  /* Button padding */
-  button {
-    width: 100%;
-    margin: 10px 0;
-  }
-
   /* Stats text */
   .stats {
     font-size: 14px;
@@ -140,4 +129,14 @@ th {
   .stats {
     font-size: 13px;
   }
+}
+
+.button-group{
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.section{
+  padding-top: 1rem;
 }

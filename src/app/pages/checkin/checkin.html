@@ -1,16 +1,10 @@
 <div class="container">
   <div class="header">
-    <mat-toolbar color="primary" class="toolbar">
-      <mat-form-field appearance="outline" class="group-select">
-        <mat-label>Group</mat-label>
-        <mat-select (selectionChange)="onGroupSelected($event.value)">
-          <mat-option value="">All</mat-option>
-          @for (g of groups(); track g._id) {
-          <mat-option [value]="g._id">{{ g.title }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-    </mat-toolbar>
+    <div class="button-group">
+       @for (group of groups(); track $index) {
+          <button (click)="onGroupSelected(group._id)" [matButton]="selectedGroups().includes(group._id) ? 'filled' : 'elevated'" [value]="group._id">{{ group.title }}</button>
+        }
+    </div>
 
     <div class="section">
       <span class="stats">Yoxlanılmış iştirakçı sayı: {{ checkedParticipiantCount() }}</span>
@@ -18,18 +12,16 @@
   </div>
 
   <!-- SEARCH BAR -->
-  <mat-card class="section">
-    <mat-form-field appearance="outline" class="search-box">
-      <mat-label>Search participant</mat-label>
-      <input matInput [(ngModel)]="search" />
+  <mat-form-field appearance="outline" class="search-box">
+    <mat-label>Search participant</mat-label>
+    <input matInput [(ngModel)]="search" />
 
-      @if (search) {
-      <button mat-icon-button matSuffix (click)="search = ''">
-        <mat-icon>close</mat-icon>
-      </button>
-      }
-    </mat-form-field>
-  </mat-card>
+    @if (search) {
+    <button mat-icon-button matSuffix (click)="search = ''">
+      <mat-icon>close</mat-icon>
+    </button>
+    }
+  </mat-form-field>
 
   <!-- TABLE -->
   <mat-card>

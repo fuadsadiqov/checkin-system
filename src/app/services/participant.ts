@@ -26,7 +26,7 @@ export interface Participant {
   providedIn: 'root',
 })
 export class ParticipantService {
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore) { }
 
   // Real-time siyahı almaq
   getParticipants(): Observable<Participant[]> {
@@ -45,9 +45,9 @@ export class ParticipantService {
     return updateDoc(ref, { checked: checked });
   }
 
-  getParticipantsByGroup(groupId: number) {
+  getParticipantsByGroup(groupIds: number[]) {
     const ref = collection(this.firestore, 'participants');
-    const q = query(ref, where('groupId', '==', groupId));
+    const q = query(ref, where('groupId', 'in', groupIds));
     return collectionData(q, { idField: 'id' }) as Observable<Participant[]>;
   }
 

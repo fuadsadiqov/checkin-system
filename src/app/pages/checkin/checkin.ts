@@ -13,6 +13,7 @@ import { Group, GroupService } from '../../services/group';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { map } from 'rxjs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-checkin',
@@ -39,16 +40,15 @@ export class CheckinComponent implements OnInit {
   groups = signal<Group[]>([]);
   columns = ['order', 'name', 'checked'];
   loading = signal(true);
-  groupControl = new FormControl<string>('');
+  selectedGroups = signal<number[]>([]);
 
   search = '';
-  selectedGroup = signal<number>(0);
 
   checkedParticipiantCount: Signal<number> = computed(
     () => this.participants().filter((participant) => participant.checked).length
   );
 
-  constructor(private participantService: ParticipantService, private groupService: GroupService) {}
+  constructor(private participantService: ParticipantService, private groupService: GroupService) { }
 
   ngOnInit() {
     this.participantService.getParticipants().subscribe((data) => {
@@ -74,14 +74,19 @@ export class CheckinComponent implements OnInit {
   }
 
   onGroupSelected(groupId: number) {
-    if (!groupId) {
+    if (this.selectedGroups().includes(groupId)) {
+      this.selectedGroups.update(() => this.selectedGroups().filter(g => g != groupId));
+    } else {
+      this.selectedGroups().push(groupId)
+    }
+    if (!this.selectedGroups().length) {
       this.participantService.getParticipants().subscribe((data) => {
         this.participants.set(data);
       });
       return;
     }
 
-    this.participantService.getParticipantsByGroup(groupId).subscribe((data) => {
+    this.participantService.getParticipantsByGroup(this.selectedGroups()).subscribe((data) => {
       this.participants.set(data);
     });
   }
