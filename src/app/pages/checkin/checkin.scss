@@ -1,0 +1,31 @@
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+mat-card {
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.search-box {
+  width: 100%;
+}
+
+.checked {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.not-checked {
+  color: #c62828;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+}
+
+td, th {
+  padding: 8px 12px;
+}
