@@ -1,31 +1,143 @@
+/* GENERAL CONTAINER */
 .container {
-  max-width: 800px;
-  margin: 20px auto;
+  max-width: 1000px;
+  margin: 40px auto 80px auto;
+  padding: 0 16px;
+  display: block;
 }
 
-mat-card {
+/* TOOLBAR */
+.toolbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
   margin-bottom: 20px;
-  padding: 20px;
+  flex-wrap: wrap;       /* 🔥 Mobil üçün vacib */
 }
 
+/* GROUP SELECT */
+.group-select {
+  width: 220px;
+  margin-left: 20px;
+}
+
+/* SEARCH */
 .search-box {
   width: 100%;
 }
 
+/* TABLE */
+table {
+  width: 100%;
+}
+
+/* Table Wrapper for MOBILE SCROLL */
+mat-card table {
+  display: block;               /* 🔥 mobil scroll üçün */
+  overflow-x: auto;             /* 🔥 horizontal scroll */
+  white-space: nowrap;          /* 🔥 table column-lar sıxılıb əyrilmir */
+}
+
+/* CELLS */
+td,
+th {
+  padding: 10px 14px;
+}
+
+/* SPACER */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* CHECKED / NOT CHECKED */
 .checked {
   color: #2e7d32;
   font-weight: bold;
 }
-
 .not-checked {
   color: #c62828;
   font-weight: bold;
 }
 
-table {
-  width: 100%;
+/* STAT TEXT */
+.stats {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
 }
 
-td, th {
-  padding: 8px 12px;
+/* =================================================================== */
+/*                          🔥 MOBILE RESPONSIVE 🔥                       */
+/* =================================================================== */
+
+@media (max-width: 768px) {
+
+  /* CONTAINER */
+  .container {
+    margin: 20px auto;
+    padding: 0 12px;
+  }
+
+  /* TOOLBAR daha kompakt olsun */
+  .toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .group-select {
+    width: 100% !important;   /* 🔥 Mobil üçün tam width */
+    margin-left: 0 !important;
+  }
+
+  /* Search Field */
+  .search-box {
+    width: 100%;
+  }
+
+  /* Table scroll */
+  mat-card table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;  /* iPhone smooth scroll */
+  }
+
+  td,
+  th {
+    padding: 8px 10px;
+    font-size: 14px;          /* mobil üçün kiçik font */
+  }
+
+  /* Button padding */
+  button {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  /* Stats text */
+  .stats {
+    font-size: 14px;
+  }
+}
+
+/* =================================================================== */
+/*                    🔥 EXTRA SMALL DEVICES - 480px 🔥                 */
+/* =================================================================== */
+@media (max-width: 480px) {
+  .toolbar {
+    padding: 8px;
+  }
+
+  .group-select {
+    width: 100%;
+  }
+
+  td,
+  th {
+    font-size: 13px;
+  }
+
+  .stats {
+    font-size: 13px;
+  }
 }
