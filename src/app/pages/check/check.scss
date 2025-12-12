@@ -1,0 +1,142 @@
+/* GENERAL CONTAINER */
+.container {
+  max-width: 1000px;
+  margin: 40px auto 80px auto;
+  padding: 0 16px;
+  display: block;
+}
+
+/* TOOLBAR */
+.toolbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;       /* 🔥 Mobil üçün vacib */
+}
+
+/* GROUP SELECT */
+.group-select {
+  width: 220px;
+  margin-left: 20px;
+}
+
+/* SEARCH */
+.search-box {
+  padding-top: 1rem;
+  width: 100%;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+}
+
+
+/* CELLS */
+td,
+th {
+  padding: 10px 14px;
+}
+
+/* SPACER */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* CHECKED / NOT CHECKED */
+.checked {
+  color: #2e7d32;
+  font-weight: bold;
+}
+.not-checked {
+  color: #c62828;
+  font-weight: bold;
+}
+
+/* STAT TEXT */
+.stats {
+  font-size: 23px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* =================================================================== */
+/*                          🔥 MOBILE RESPONSIVE 🔥                       */
+/* =================================================================== */
+
+@media (max-width: 768px) {
+
+  /* CONTAINER */
+  .container {
+    margin: 20px auto;
+    padding: 0 12px;
+  }
+
+  /* TOOLBAR daha kompakt olsun */
+  .toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .group-select {
+    width: 100% !important;   /* 🔥 Mobil üçün tam width */
+    margin-left: 0 !important;
+  }
+
+  /* Search Field */
+  .search-box {
+    width: 100%;
+  }
+
+  /* Table scroll */
+  mat-card table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;  /* iPhone smooth scroll */
+  }
+
+  td,
+  th {
+    padding: 8px 10px;
+    font-size: 14px;          /* mobil üçün kiçik font */
+  }
+
+  /* Stats text */
+  .stats {
+    font-size: 14px;
+  }
+}
+
+/* =================================================================== */
+/*                    🔥 EXTRA SMALL DEVICES - 480px 🔥                 */
+/* =================================================================== */
+@media (max-width: 480px) {
+  .toolbar {
+    padding: 8px;
+  }
+
+  .group-select {
+    width: 100%;
+  }
+
+  td,
+  th {
+    font-size: 13px;
+  }
+
+  .stats {
+    font-size: 23px;
+  }
+}
+
+.button-group{
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.section{
+  padding-top: 1rem;
+}

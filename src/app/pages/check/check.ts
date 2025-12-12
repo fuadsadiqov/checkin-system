@@ -1,23 +1,21 @@
-import { Component, computed, OnInit, signal, Signal, WritableSignal } from '@angular/core';
+import { Component, computed, signal, Signal } from '@angular/core';
+import { Subscription, map } from 'rxjs';
+import { Group, GroupService } from '../../services/group';
 import { Participant, ParticipantService } from '../../services/participant';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Group, GroupService } from '../../services/group';
-import { MatSelectModule } from '@angular/material/select';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { map, Subscription } from 'rxjs';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
-  selector: 'app-checkin',
-  standalone: true,
+  selector: 'app-check',
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -32,10 +30,10 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatSelectModule,
     MatAutocompleteModule,
   ],
-  templateUrl: './checkin.html',
-  styleUrl: './checkin.scss',
+  templateUrl: './check.html',
+  styleUrl: './check.scss',
 })
-export class CheckinComponent implements OnInit {
+export class Check {
   participants = signal<Participant[]>([]);
   groups = signal<Group[]>([]);
   columns = ['order', 'name', 'checked'];
@@ -89,7 +87,7 @@ export class CheckinComponent implements OnInit {
     this.participantsSub?.unsubscribe();
 
     const obs$ =
-      (groupIds.length && !groupIds.includes(0))
+      groupIds.length && !groupIds.includes(0)
         ? this.participantService.getParticipantsByGroup(groupIds)
         : this.participantService.getParticipants();
 

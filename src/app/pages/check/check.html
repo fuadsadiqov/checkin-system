@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="button-group">
+    @for (group of groups(); track $index) {
+    <button
+      (click)="onGroupSelected(group._id)"
+      [matButton]="selectedGroups().includes(group._id) ? 'filled' : 'elevated'"
+      [value]="group._id"
+    >
+      {{ group.title }}
+    </button>
+    }
+  </div>
+
+  <div class="section">
+    <h1 class="stats">Yoxlanılmış iştirakçı sayı: {{ checkedParticipiantCount() }}</h1>
+  </div>
+</div>
