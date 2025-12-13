@@ -14,4 +14,56 @@
   <div class="section">
     <h1 class="stats">Yoxlanılmış iştirakçı sayı: {{ checkedParticipiantCount() }}</h1>
   </div>
+
+  <!-- SEARCH BAR -->
+  <mat-form-field appearance="outline" class="search-box">
+    <mat-label>Search participant</mat-label>
+    <input matInput [(ngModel)]="search" />
+
+    @if (search) {
+    <button mat-icon-button matSuffix (click)="search = ''">
+      <mat-icon>close</mat-icon>
+    </button>
+    }
+  </mat-form-field>
+
+  <!-- TABLE -->
+  <mat-card>
+    <table mat-table [dataSource]="filteredList()" class="mat-elevation-z3">
+      <!-- ORDER Column -->
+      <ng-container matColumnDef="order">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let p">{{ p.order }}</td>
+      </ng-container>
+
+      <!-- NAME Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Participant</th>
+        <td mat-cell *matCellDef="let p">
+          <b>{{ p.name }}</b>
+        </td>
+      </ng-container>
+
+      <!-- POSITION Column -->
+      <!-- <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>Position</th>
+        <td mat-cell *matCellDef="let p">{{ p.position }}</td>
+      </ng-container> -->
+
+      <!-- CHECK-IN Column -->
+      <ng-container matColumnDef="checked">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let p">
+          @if(p.checked){
+            ✅
+          }@else{
+            ❌
+          }
+        </td> 
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+  </mat-card>
 </div>
